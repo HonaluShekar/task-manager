@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://127.0.0.1:5000/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"email\": \"honalu@gmail.com\",\r
+
+    \  \"password\": \"1234\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: ""
+order: 4502935067805191

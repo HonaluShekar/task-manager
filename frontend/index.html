@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="center">
+    <div class="login-box">
+        <h1>TaskFlow</h1>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="app" class="hidden">
+
+    <header>
+        <h2>TaskFlow</h2>
+        <button onclick="logout()">Logout</button>
+    </header>
+
+    <div class="dashboard">
+
+        <!-- ADD TASK -->
+        <div class="box">
+            <h3>Add Task</h3>
+            <input type="text" id="title" placeholder="Task title">
+            <input type="text" id="desc" placeholder="Description">
+            <input type="date" id="date">
+            <button onclick="addTask()">Add Task</button>
+        </div>
+
+        <!-- TASK LIST -->
+        <div class="box">
+            <h3>Your Tasks</h3>
+            <button onclick="getTasks()">Refresh</button>
+            <ul id="taskList"></ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

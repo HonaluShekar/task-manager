@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://127.0.0.1:5000/register
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Honalu\",\r
+
+    \  \"email\": \"honalu@gmail.com\",\r
+
+    \  \"password\": \"1234\"\r
+
+    }"
+order: 1776843654983

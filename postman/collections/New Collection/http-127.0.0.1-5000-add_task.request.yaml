@@ -1,0 +1,12 @@
+$kind: http-request
+name: http://127.0.0.1:5000/add_task
+url: http://127.0.0.1:5000/add_task
+method: POST
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3Njg1NDgzNywianRpIjoiYTM5ZDI3MDEtN2I4Yy00N2E4LThiZjYtZDM3MDQ3OWEzOGU5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzc2ODU0ODM3LCJjc3JmIjoiMzg3ZmQxNWItYWU2NS00MWRkLWE1YTgtMTI5YTk5NDc2NmJiIiwiZXhwIjoxNzc2ODU1NzM3fQ.6TFZzV4BQu95eph2pHGmJWCzw9XpLlRkzBEbaE9USCU
+order: 4502943732595286

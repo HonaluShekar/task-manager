@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://127.0.0.1:5000/add_task
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"user_id\": 1,\r
+
+    \  \"task_title\": \"Complete assignment\",\r
+
+    \  \"description\": \"Math homework\",\r
+
+    \  \"due_date\": \"2026-04-25\"\r
+
+    }"
+order: 3943691564428305
