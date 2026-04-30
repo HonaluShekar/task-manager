@@ -7,19 +7,26 @@ function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    fetch(`${BASE}/login`, {
+    console.log("Login clicked");
+
+    fetch(`${BASE}/login`, {   // ✅ FIXED (no localhost)
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
     })
     .then(res => res.json())
     .then(data => {
-        console.log("LOGIN RESPONSE:", data);
+        console.log("Response:", data);
 
-        if (data.token) {
-            token = data.token;
+        if (data.access_token) {
+            token = data.access_token;   // ✅ SAVE TOKEN
+
+            alert("Login success");
 
             document.getElementById("loginPage").style.display = "none";
             document.getElementById("app").classList.remove("hidden");
@@ -29,7 +36,10 @@ function login() {
             alert(data.message || "Login failed");
         }
     })
-    .catch(err => console.error("Login error:", err));
+    .catch(err => {
+        console.error("Error:", err);
+        alert("Login failed");
+    });
 }
 
 // LOGOUT
@@ -63,7 +73,6 @@ function addTask() {
 
         alert(data.message || "Task added");
 
-        // clear fields
         document.getElementById("title").value = "";
         document.getElementById("desc").value = "";
         document.getElementById("date").value = "";
