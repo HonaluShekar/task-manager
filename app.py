@@ -146,4 +146,4 @@ def home():
 
 # ALWAYS KEEP THIS AT LAST
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

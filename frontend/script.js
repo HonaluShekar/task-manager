@@ -1,3 +1,5 @@
+const BASE = "https://task-manager-2v3w.onrender.com";
+
 let token = "";
 
 // LOGIN
@@ -5,7 +7,7 @@ function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    fetch("http://127.0.0.1:5000/login", {
+    fetch(`${BASE}/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -14,18 +16,20 @@ function login() {
     })
     .then(res => res.json())
     .then(data => {
+        console.log("LOGIN RESPONSE:", data);
+
         if (data.token) {
             token = data.token;
 
             document.getElementById("loginPage").style.display = "none";
             document.getElementById("app").classList.remove("hidden");
 
-            getTasks(); // auto load
+            getTasks();
         } else {
-            alert("Login failed");
+            alert(data.message || "Login failed");
         }
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Login error:", err));
 }
 
 // LOGOUT
@@ -41,7 +45,7 @@ function addTask() {
     const desc = document.getElementById("desc").value;
     const date = document.getElementById("date").value;
 
-    fetch("http://127.0.0.1:5000/add_task", {
+    fetch(`${BASE}/add_task`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -55,15 +59,23 @@ function addTask() {
     })
     .then(res => res.json())
     .then(data => {
-        alert(data.message);
+        console.log("ADD TASK:", data);
+
+        alert(data.message || "Task added");
+
+        // clear fields
+        document.getElementById("title").value = "";
+        document.getElementById("desc").value = "";
+        document.getElementById("date").value = "";
+
         getTasks();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Add error:", err));
 }
 
 // GET TASKS
 function getTasks() {
-    fetch("http://127.0.0.1:5000/tasks", {
+    fetch(`${BASE}/tasks`, {
         method: "GET",
         headers: {
             "Authorization": "Bearer " + token
@@ -71,6 +83,8 @@ function getTasks() {
     })
     .then(res => res.json())
     .then(data => {
+        console.log("TASKS:", data);
+
         let list = document.getElementById("taskList");
         list.innerHTML = "";
 
@@ -90,12 +104,12 @@ function getTasks() {
             list.appendChild(li);
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Fetch error:", err));
 }
 
 // UPDATE TASK
 function updateTask(id) {
-    fetch(`http://127.0.0.1:5000/update_task/${id}`, {
+    fetch(`${BASE}/update_task/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -107,14 +121,15 @@ function updateTask(id) {
     })
     .then(res => res.json())
     .then(data => {
+        console.log("UPDATE:", data);
         getTasks();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Update error:", err));
 }
 
 // DELETE TASK
 function deleteTask(id) {
-    fetch(`http://127.0.0.1:5000/delete_task/${id}`, {
+    fetch(`${BASE}/delete_task/${id}`, {
         method: "DELETE",
         headers: {
             "Authorization": "Bearer " + token
@@ -122,7 +137,8 @@ function deleteTask(id) {
     })
     .then(res => res.json())
     .then(data => {
+        console.log("DELETE:", data);
         getTasks();
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error("Delete error:", err));
 }
