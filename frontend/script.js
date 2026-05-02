@@ -7,9 +7,14 @@ function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
+    if (!email || !password) {
+        alert("Please enter email and password");
+        return;
+    }
+
     console.log("Login clicked");
 
-    fetch(`${BASE}/login`, {   // ✅ FIXED (no localhost)
+    fetch(`${BASE}/login`, {   // ✅ FIXED
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -24,9 +29,7 @@ function login() {
         console.log("Response:", data);
 
         if (data.access_token) {
-            token = data.access_token;   // ✅ SAVE TOKEN
-
-            alert("Login success");
+            token = data.access_token;
 
             document.getElementById("loginPage").style.display = "none";
             document.getElementById("app").classList.remove("hidden");
@@ -55,6 +58,11 @@ function addTask() {
     const desc = document.getElementById("desc").value;
     const date = document.getElementById("date").value;
 
+    if (!title) {
+        alert("Task title is required");
+        return;
+    }
+
     fetch(`${BASE}/add_task`, {
         method: "POST",
         headers: {
@@ -69,8 +77,6 @@ function addTask() {
     })
     .then(res => res.json())
     .then(data => {
-        console.log("ADD TASK:", data);
-
         alert(data.message || "Task added");
 
         document.getElementById("title").value = "";
@@ -92,8 +98,6 @@ function getTasks() {
     })
     .then(res => res.json())
     .then(data => {
-        console.log("TASKS:", data);
-
         let list = document.getElementById("taskList");
         list.innerHTML = "";
 
@@ -129,10 +133,7 @@ function updateTask(id) {
         })
     })
     .then(res => res.json())
-    .then(data => {
-        console.log("UPDATE:", data);
-        getTasks();
-    })
+    .then(() => getTasks())
     .catch(err => console.error("Update error:", err));
 }
 
@@ -145,9 +146,6 @@ function deleteTask(id) {
         }
     })
     .then(res => res.json())
-    .then(data => {
-        console.log("DELETE:", data);
-        getTasks();
-    })
+    .then(() => getTasks())
     .catch(err => console.error("Delete error:", err));
 }

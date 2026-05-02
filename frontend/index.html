@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskFlow</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,9 +12,13 @@
 <div id="loginPage" class="center">
     <div class="login-box">
         <h1>TaskFlow</h1>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
+
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+
         <button onclick="login()">Login</button>
+
+        <p id="loginError" style="color:red;"></p>
     </div>
 </div>
 
@@ -29,15 +35,18 @@
         <!-- ADD TASK -->
         <div class="box">
             <h3>Add Task</h3>
+
             <input type="text" id="title" placeholder="Task title">
             <input type="text" id="desc" placeholder="Description">
             <input type="date" id="date">
+
             <button onclick="addTask()">Add Task</button>
         </div>
 
         <!-- TASK LIST -->
         <div class="box">
             <h3>Your Tasks</h3>
+
             <button onclick="getTasks()">Refresh</button>
             <ul id="taskList"></ul>
         </div>
