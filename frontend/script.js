@@ -1,4 +1,4 @@
-const BASE = "https://task-manager-2v3w.onrender.com";
+const BASE = "https://task-manager-1-ouci.onrender.com";
 
 let token = "";
 
